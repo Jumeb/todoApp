@@ -19,12 +19,38 @@ const styles = StyleSheet.create({
     backgroundColor: theme.WHITE_COLOR,
     marginHorizontal: 8,
     marginVertical: 10,
-    borderRadius: 4,
-    padding: 8,
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
   },
   todoInfo: {
     fontSize: 16,
     color: theme.TERTIARY_COLOR,
+    flexWrap: 'wrap',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  todoTitle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 6,
+  },
+  todoSubTitle: {
+    color: theme.WHITE_COLOR,
+    fontSize: 18,
+  },
+  detailsDone: {
+    backgroundColor: theme.PRIMARY_COLOR,
+    borderTopRightRadius: 4,
+    borderTopLeftRadius: 4,
+  },
+  completedStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 2,
+  },
+  completedData: {
+    color: theme.WHITE_COLOR,
+    fontSize: 12,
   },
 });
 

@@ -1,15 +1,20 @@
 import {DONE_TODO} from '../types';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = {doneLength: 0, doneList: []};
 
 export default (state = INITIAL_STATE, action) => {
-  let id, todo;
+  let todo, todos;
   switch (action.type) {
     case DONE_TODO:
-      id = action.payload.id;
       todo = action.payload.todo;
-      let index = state.findIndex((doneTodo) => doneTodo.todo === todo);
-      state.splice(index, 1, {id, todo});
+      let index = state.doneList.findIndex(
+        (doneTodo) => doneTodo.todo === todo,
+      );
+      if (index === -1) {
+        todos = state.doneLength + 1;
+        let tasks = [...state.doneList, action.payload];
+        return {...state, todoLength: todos, doneList: tasks};
+      }
       return state;
     default:
       return state;

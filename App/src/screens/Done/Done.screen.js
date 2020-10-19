@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 
@@ -12,6 +12,8 @@ const Done = (props) => {
   const [confirm, setConfirm] = useState(false);
   const [editTask, setEditTask] = useState({});
   const [func, setFunc] = useState('');
+
+  useEffect(() => {}, [done]);
 
   const openNotification = () => {
     setConfirm(!confirm);
@@ -32,7 +34,7 @@ const Done = (props) => {
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
-        {done.map((item, key) => (
+        {done.doneList.map((item, key) => (
           <DoneList done={item} key={key} />
         ))}
       </ScrollView>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 
@@ -12,6 +12,8 @@ const Home = (props) => {
   const [confirm, setConfirm] = useState(false);
   const [editTask, setEditTask] = useState({});
   const [func, setFunc] = useState('');
+
+  useEffect(() => {}, [tasks]);
 
   const openNotification = () => {
     setConfirm(!confirm);
@@ -32,13 +34,15 @@ const Home = (props) => {
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
-        {tasks.map((item, key) => (
+        {tasks.taskList.map((item, key) => (
           <TodoList
             task={item}
             openModal={openModal}
             openNotification={openNotification}
             setFunc={(text) => setFunc(text)}
-            setEditTask={(id, todo) => setEditTask({id, todo})}
+            setEditTask={(todo, date, createdOn) =>
+              setEditTask({todo, date, createdOn})
+            }
             key={key}
           />
         ))}

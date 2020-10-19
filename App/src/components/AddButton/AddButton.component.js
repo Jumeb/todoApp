@@ -1,23 +1,28 @@
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, Text} from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
+import {connect} from 'react-redux';
 
 import styles from './Addbutton.styles';
 import theme from '../../styles/theme';
 
 const AddButton = (props) => {
-  const {openModal, setFunc} = props;
+  const {openModal, setFunc, tasks} = props;
   const addTodo = () => {
     setFunc('addTodo');
     openModal();
   };
   return (
     <TouchableOpacity style={styles.addButton} onPress={() => addTodo()}>
-      <View>
-        <Icons name="add" size={30} color={theme.WHITE_COLOR} />
+      <View style={styles.addButtonTextLayout}>
+        <Icons name="ios-add-outline" size={28} color={theme.WHITE_COLOR} />
       </View>
     </TouchableOpacity>
   );
 };
 
-export default AddButton;
+const mapStateToProps = ({tasks}) => {
+  return {tasks};
+};
+
+export default connect(mapStateToProps)(AddButton);

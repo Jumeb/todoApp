@@ -1,30 +1,34 @@
 import {ADD_TODO, EDIT_TODO, DELETE_TODO, DONE_TODO} from '../types';
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = {todoLength: 0, taskList: []};
 
 export default (state = INITIAL_STATE, action) => {
-  let id = state.length + 1;
   let index, todo;
   switch (action.type) {
     case ADD_TODO:
-      return [...state, {id: id, todo: action.payload}];
+      let todos = state.todoLength + 1;
+      let tasks = [...state.taskList, action.payload];
+      // console.log(state);
+      return {...state, todoLength: todos, taskList: tasks};
     case EDIT_TODO:
-      id = action.payload.id;
-      todo = action.payload.todo;
-      index = state.findIndex((editTodo) => editTodo.id === id);
-      state.splice(index, 1, {id, todo});
+      index = state.taskList.findIndex((editTodo) => editTodo.todo === todo);
+      state.taskList.splice(index, 1, action.payload);
+      // console.log(state);
       return state;
     case DONE_TODO:
-      id = action.payload.id;
-      todo = action.payload.todo;
-      index = state.findIndex((doneTodo) => doneTodo.todo === todo);
-      state.splice(index - 1, 1);
-      return state;
+      todo = action.payload;
+      todos = state.todoLength - 1;
+      index = state.taskList.findIndex((doneTodo) => doneTodo.todo === todo);
+      state.taskList.splice(index, 1);
+      console.log(state);
+      return {...state, todoLength: todos};
     case DELETE_TODO:
       todo = action.payload;
-      index = state.findIndex((deleteTodo) => deleteTodo.todo === todo);
-      state.splice(index - 1, 1);
-      return state;
+      todos = state.todoLength - 1;
+      index = state.taskList.findIndex((doneTodo) => doneTodo.todo === todo);
+      state.taskList.splice(index, 1);
+      console.log(state);
+      return {...state, todoLength: todos};
     default:
       return state;
   }

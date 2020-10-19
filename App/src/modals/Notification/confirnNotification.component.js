@@ -11,8 +11,8 @@ const ConfirmNotification = (props) => {
   const {closeNotification, confirm, deleteTodo} = props;
 
   const Delete = () => {
-    const {id, todo} = deleteTodo;
-    props.DeletedTodo(id, todo);
+    const {todo} = deleteTodo;
+    props.DeletedTodo(todo);
     closeNotification();
   };
   return (

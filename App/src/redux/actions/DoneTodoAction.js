@@ -1,9 +1,8 @@
 import {DONE_TODO} from '../types';
 
-export const DoneTodo = (id, todo) => {
-  console.log(todo, 'love this');
+export const DoneTodo = (todo, date, createdOn, completedOn) => {
   return {
     type: DONE_TODO,
-    payload: {id, todo},
+    payload: {todo, date, createdOn, completedOn},
   };
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Router, Stack, Scene} from 'react-native-router-flux';
 import {SplashScreen, Home, Done} from '../screens/index';
-import {TabIcon} from '../components';
+import {TabIcon, Header} from '../components';
 import theme from '../styles/theme';
 
 const Routers = () => {
@@ -21,10 +21,18 @@ const Routers = () => {
             key="Home"
             component={Home}
             title="Home"
-            hideNavBar
+            rightTitle="My Todos"
+            navBar={Header}
             icon={TabIcon}
           />
-          <Scene key="Done" component={Done} title="Done" icon={TabIcon} />
+          <Scene
+            key="Done"
+            component={Done}
+            title="Done"
+            icon={TabIcon}
+            rightTitle="Done"
+            navBar={Header}
+          />
         </Scene>
       </Stack>
     </Router>

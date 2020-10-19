@@ -1,15 +1,15 @@
 import {ADD_TODO, EDIT_TODO, DELETE_TODO} from '../types';
 
-export const AddTodo = (todo) => {
+export const AddTodo = (todo, date, createdOn) => {
   return {
     type: ADD_TODO,
-    payload: todo,
+    payload: {todo, date, createdOn},
   };
 };
 
-export const EditTodo = (id, todo) => {
+export const EditTodo = (todo, date, createdOn) => {
   return {
     type: EDIT_TODO,
-    payload: {id, todo},
+    payload: {todo, date, createdOn},
   };
 };
