@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   modalTitle: {
-    backgroundColor: theme.PRIMARY_COLOR,
+    backgroundColor: theme.DANGER_COLOR,
     borderTopRightRadius: 4,
     borderTopLeftRadius: 4,
     padding: 13,

@@ -1,19 +1,24 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import Icons from 'react-native-vector-icons/Ionicons';
 
 import theme from '../../styles/theme';
+import {Actions} from 'react-native-router-flux';
 
 const Header = (props) => {
   const {rightTitle, tasks} = props;
+  useEffect(() => {
+    tasks;
+  }, [tasks]);
+  const taskLength = tasks.filter((len) => !len.completed);
   return (
     <View style={styles.mainHeader}>
       <Text style={styles.mainHeaderText}>{rightTitle}</Text>
-      <View style={styles.todoList}>
+      <TouchableOpacity style={styles.todoList} onPress={() => Actions.main()}>
         <Icons name="list" size={28} color={theme.WHITE_COLOR} />
-        <Text style={styles.todoCount}>{tasks.todoLength}</Text>
-      </View>
+        <Text style={styles.todoCount}>{taskLength.length}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

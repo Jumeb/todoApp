@@ -9,9 +9,7 @@ const Routers = () => {
   return (
     <Router>
       <Stack key="root" hideNavBar>
-        <Scene key="welcome">
-          <Scene key="SplashScreen" component={SplashScreen} hideNavBar />
-        </Scene>
+        <Scene key="SplashScreen" component={SplashScreen} />
         <Scene
           key="main"
           tabs={true}
@@ -56,5 +54,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     borderTopWidth: 1,
+    backgroundColor: theme.WHITE_COLOR,
   },
 });

@@ -8,23 +8,28 @@ import Icons from 'react-native-vector-icons/Ionicons';
 import {DoneTodo} from '../../redux/actions/DoneTodoAction';
 import theme from '../../styles/theme';
 import styles from './todoList.style';
+import {Actions} from 'react-native-router-flux';
 
 const TodoList = (props) => {
   const {task, openModal, setFunc, setEditTask, openNotification} = props;
 
-  const upDate = (todo, date, createdOn) => {
-    setEditTask(todo, date, createdOn);
+  const upDate = (id, todo, date, created_on, completed) => {
+    const editTask = {id, todo, date, created_on, completed};
+    setEditTask(editTask);
     setFunc('editTodo');
     openModal();
   };
 
-  const DoneTask = (todoinfo, date, createdOn) => {
-    const completedOn = new Date();
-    props.DoneTodo(todoinfo, date, createdOn, completedOn);
+  const DoneTask = (id) => {
+    const completed_on = Date.now();
+    const doneTask = {id, completed_on};
+    props.DoneTodo(doneTask);
+    Actions.Done();
   };
 
-  const deleteTask = (todo, date, createdOn) => {
-    setEditTask(todo, date, createdOn);
+  const deleteTask = (id, todo) => {
+    const deleteTodo = {id, todo};
+    setEditTask(deleteTodo);
     openNotification();
   };
 
@@ -39,7 +44,15 @@ const TodoList = (props) => {
       <Text style={styles.todoInfo}>{task.todo}</Text>
       <View style={styles.functionButtonsContainer}>
         <TouchableOpacity
-          onPress={() => upDate(task.todo, task.date, task.createdOn)}
+          onPress={() =>
+            upDate(
+              task.id,
+              task.todo,
+              task.date,
+              task.created_on,
+              task.completed,
+            )
+          }
           style={[
             styles.functionButton,
             {backgroundColor: theme.SUCCESS_COLOR},
@@ -48,7 +61,7 @@ const TodoList = (props) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.functionButton}
-          onPress={() => DoneTask(task.todo, task.date, task.createdOn)}>
+          onPress={() => DoneTask(task.id)}>
           <Icons
             name="ios-checkmark-done"
             size={20}
@@ -57,7 +70,7 @@ const TodoList = (props) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.functionButton, {backgroundColor: theme.DANGER_COLOR}]}
-          onPress={() => deleteTask(task.todo, task.date, task.createdOn)}>
+          onPress={() => deleteTask(task.id, task.todo)}>
           <Icons name="ios-trash-outline" size={20} color={theme.WHITE_COLOR} />
         </TouchableOpacity>
       </View>

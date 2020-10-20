@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: theme.PRIMARY_COLOR,
   },
+  separator: {
+    borderWidth: 1.4,
+    borderColor: theme.PRIMARY_COLOR,
+    width: 90,
+  },
 });
 
 export default styles;

@@ -1,5 +1,6 @@
 import Splash from './SplashModal/splash.component';
 import AddModal from './AddModal/addModal.component';
-import ConfirmNotification from './Notification/confirnNotification.component';
+import ConfirmNotification from './Notification/confirmNotification.component';
+import Success from './Success/success.component';
 
-export {Splash, AddModal, ConfirmNotification};
+export {Splash, AddModal, ConfirmNotification, Success};

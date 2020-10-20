@@ -1,8 +1,8 @@
 import {DELETE_TODO} from '../types';
 
-export const DeletedTodo = (todo) => {
+export const DeletedTodo = (id) => {
   return {
     type: DELETE_TODO,
-    payload: todo,
+    payload: id,
   };
 };

@@ -45,13 +45,6 @@ const styles = StyleSheet.create({
     color: theme.WHITE_COLOR,
     fontSize: 18,
   },
-  todoInfo: {
-    fontSize: 16,
-    color: theme.TERTIARY_COLOR,
-    flexWrap: 'wrap',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-  },
   createdOn: {
     color: theme.LIGHT_GREY,
     paddingHorizontal: 6,

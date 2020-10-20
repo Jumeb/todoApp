@@ -5,14 +5,19 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {DeletedTodo} from '../../redux/actions/DeletedTodoAction';
+import theme from '../../styles/theme';
 import styles from './confirmNotification.style';
 
 const ConfirmNotification = (props) => {
   const {closeNotification, confirm, deleteTodo} = props;
 
   const Delete = () => {
-    const {todo} = deleteTodo;
-    props.DeletedTodo(todo);
+    const {id} = deleteTodo;
+    props.DeletedTodo(id);
+    closeNotification();
+  };
+
+  const cancel = () => {
     closeNotification();
   };
   return (
@@ -28,11 +33,11 @@ const ConfirmNotification = (props) => {
         <View style={styles.modalButtonsContainer}>
           <TouchableOpacity
             style={styles.modalButtons}
-            onPress={() => closeNotification()}>
+            onPress={() => cancel()}>
             <Text style={styles.modalButtonsText}>Cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.modalButtons}
+            style={[styles.modalButtons, {backgroundColor: theme.DANGER_COLOR}]}
             onPress={() => Delete()}>
             <Text style={styles.modalButtonsText}>Confirm</Text>
           </TouchableOpacity>

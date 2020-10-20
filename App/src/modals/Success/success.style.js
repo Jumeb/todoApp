@@ -3,17 +3,15 @@ import theme from '../../styles/theme';
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
   },
-  company: {
-    fontSize: 18,
-    color: theme.WHITE_COLOR,
-    letterSpacing: 1.8,
-    position: 'absolute',
-    bottom: 7,
-    textAlign: 'center',
+  container: {
+    height: 100,
+    width: 100,
+    backgroundColor: theme.PRIMARY_COLOR,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 60,
   },
 });
 

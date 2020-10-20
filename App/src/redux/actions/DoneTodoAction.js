@@ -1,8 +1,15 @@
-import {DONE_TODO} from '../types';
+import {DONE_TODO, REDO_TODO} from '../types';
 
-export const DoneTodo = (todo, date, createdOn, completedOn) => {
+export const DoneTodo = (done) => {
   return {
     type: DONE_TODO,
-    payload: {todo, date, createdOn, completedOn},
+    payload: done,
+  };
+};
+
+export const RedoTodo = (id) => {
+  return {
+    type: REDO_TODO,
+    payload: id,
   };
 };

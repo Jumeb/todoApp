@@ -3,8 +3,11 @@ import theme from '../../styles/theme';
 
 const styles = StyleSheet.create({
   functionButton: {
-    padding: 10,
+    paddingVertical: 6,
+    paddingHorizontal: 15,
     marginVertical: 5,
+    borderRadius: 4,
+    backgroundColor: theme.PRIMARY_COLOR,
   },
   functionButtonText: {
     fontSize: 15,
@@ -30,26 +33,23 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   todoTitle: {
+    backgroundColor: theme.PRIMARY_COLOR,
+    borderTopRightRadius: 4,
+    borderTopLeftRadius: 4,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 6,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
   },
   todoSubTitle: {
     color: theme.WHITE_COLOR,
     fontSize: 18,
   },
-  detailsDone: {
-    backgroundColor: theme.PRIMARY_COLOR,
-    borderTopRightRadius: 4,
-    borderTopLeftRadius: 4,
-  },
-  completedStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 2,
-  },
-  completedData: {
-    color: theme.WHITE_COLOR,
+  createdOn: {
+    color: theme.LIGHT_GREY,
+    paddingHorizontal: 6,
+    paddingVertical: 3,
+    textAlign: 'right',
     fontSize: 12,
   },
 });

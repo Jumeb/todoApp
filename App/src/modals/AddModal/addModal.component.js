@@ -12,7 +12,7 @@ import styles from './addModal.style';
 
 const AddModal = (props) => {
   const {addModal, closeModal, editTask, func} = props;
-  const [todoInfo, setTodoInfo] = useState('');
+  const [todo, setTodo] = useState('');
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date());
   const [createdOn, setCreatedOn] = useState(new Date());
@@ -29,48 +29,54 @@ const AddModal = (props) => {
 
   useEffect(() => {
     if (editTask.todo) {
-      setTodoInfo(editTask.todo);
+      setTodo(editTask.todo);
     }
   }, [editTask]);
 
   const resetModal = () => {
     closeModal();
-    setTodoInfo('');
+    setTodo('');
   };
 
   const perform = () => {
     if (func === 'addTodo') {
-      if (todoInfo) {
-        props.AddTodo(todoInfo, date, createdOn);
+      if (todo) {
+        const id = Math.floor(Math.random() * 1000);
+        const completed = false;
+        const created_on = createdOn;
+        const addTodo = {id, todo, date, created_on, completed};
+        props.AddTodo(addTodo);
         closeModal();
         setCreatedOn(new Date());
-        setTodoInfo('');
+        setTodo('');
       }
       closeModal();
     } else if (func === 'editTodo') {
-      const createdOn = new Date();
-      props.EditTodo(todoInfo, date, createdOn);
+      const created_on = new Date();
+      const {completed, id} = editTask;
+      const editTodo = {id, todo, date, created_on, completed};
+      props.EditTodo(editTodo);
       closeModal();
-      setTodoInfo('');
+      setTodo('');
       closeModal();
     }
   };
   return (
     <Modal
       isVisible={addModal}
-      // hasBackdrop={false}
-      backdropOpacity={0.6}
+      backdropOpacity={0.7}
       onBackdropPress={() => closeModal()}
       swipeDirection={['down']}
       animationInTiming={1000}
       animationOutTiming={900}
       onSwipeComplete={() => closeModal()}
+      onBackButtonPress={() => closeModal()}
       style={styles.mainContainer}>
       <View style={styles.modalContent}>
         <Input
           capitalze="sentences"
-          value={todoInfo}
-          setTodo={(text) => setTodoInfo(text)}
+          value={todo}
+          setTodo={(text) => setTodo(text)}
         />
         {show && (
           <DateTimePicker
@@ -94,7 +100,7 @@ const AddModal = (props) => {
             style={styles.functionButton}
             onPress={() => perform()}>
             <Text style={styles.functionButtonText}>
-              {todoInfo.length < 10
+              {todo.length < 10
                 ? 'Enter Todo'
                 : func === 'addTodo'
                 ? 'Add Todo'

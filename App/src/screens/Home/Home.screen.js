@@ -19,6 +19,8 @@ const Home = (props) => {
     setConfirm(!confirm);
   };
 
+  const todos = tasks.filter((complete) => !complete.completed);
+
   const closeNotification = () => {
     setConfirm(false);
   };
@@ -34,15 +36,13 @@ const Home = (props) => {
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
-        {tasks.taskList.map((item, key) => (
+        {todos.map((item, key) => (
           <TodoList
             task={item}
             openModal={openModal}
             openNotification={openNotification}
             setFunc={(text) => setFunc(text)}
-            setEditTask={(todo, date, createdOn) =>
-              setEditTask({todo, date, createdOn})
-            }
+            setEditTask={setEditTask}
             key={key}
           />
         ))}

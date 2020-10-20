@@ -16,13 +16,9 @@ const TabIcon = ({title, focused, selected}) => {
 
   return (
     <View style={styles.mainTab}>
-      <Icons
-        name={icon}
-        size={20}
-        color={selected ? theme.PRIMARY_COLOR : theme.WHITE_COLOR}
-        style={styles.tabIcon}
-      />
-      {focused && <Text style={styles.tabText}>{title}</Text>}
+      <Icons name={icon} size={25} color={theme.PRIMARY_COLOR} />
+      <Text style={styles.tabText}>{title}</Text>
+      {focused && <View style={styles.separator} />}
     </View>
   );
 };
