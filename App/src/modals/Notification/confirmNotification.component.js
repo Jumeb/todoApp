@@ -28,7 +28,7 @@ const ConfirmNotification = (props) => {
       <View style={styles.modalContent}>
         <View style={styles.deleteDetails}>
           <Text style={styles.deleteDetailsText}>Do you want to delete?</Text>
-          <Text style={styles.deleteDetailsText}> {deleteTodo.todo}</Text>
+          <Text style={styles.deleteDetailsText}> {deleteTodo.title}</Text>
         </View>
         <View style={styles.modalButtonsContainer}>
           <TouchableOpacity

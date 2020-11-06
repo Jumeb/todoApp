@@ -35,7 +35,7 @@ const DoneList = (props) => {
           {moment(done.completed_on).format('hh:mm a')}
         </Text>
       </View>
-      <Text style={styles.todoInfo}>{done.todo}</Text>
+      <Text style={styles.todoInfo}>{done.title}</Text>
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <TouchableOpacity
           style={styles.functionButton}

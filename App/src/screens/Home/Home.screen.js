@@ -1,10 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {TodoList, AddButton} from '../../components';
 import {AddModal, ConfirmNotification} from '../../modals';
 import styles from './Home.style';
+import {loadData} from '../../utils/storage';
+import {AddTodo} from '../../redux/actions/TodoAction';
+import {url} from '../../utils/globalVariable';
 
 const Home = (props) => {
   const {tasks} = props;
@@ -13,7 +17,26 @@ const Home = (props) => {
   const [editTask, setEditTask] = useState({});
   const [func, setFunc] = useState('');
 
-  useEffect(() => {}, [tasks]);
+  useEffect(() => {
+    loadData('Todos').then((todo) => console.log(todo, 'todos'));
+  }, [tasks]);
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const fetchTodos = () => {
+    const listOfTodos = `${url}/todos`;
+    // console.log(listOfTodos);
+    fetch(listOfTodos)
+      .then((response) => {
+        return response.json();
+      })
+      .then((responseJson) => {
+        // props.AddTodo(responseJson);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const openNotification = () => {
     setConfirm(!confirm);
@@ -69,4 +92,8 @@ const mapStateToProps = (state) => {
   return {tasks};
 };
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({AddTodo}, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

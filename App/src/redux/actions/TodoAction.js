@@ -7,9 +7,9 @@ export const AddTodo = (todo) => {
   };
 };
 
-export const EditTodo = (todo) => {
+export const EditTodo = (title) => {
   return {
     type: EDIT_TODO,
-    payload: todo,
+    payload: title,
   };
 };

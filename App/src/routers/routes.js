@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Router, Stack, Scene} from 'react-native-router-flux';
-import {SplashScreen, Home, Done} from '../screens/index';
+import {SplashScreen, Home, Done, Login} from '../screens/index';
 import {TabIcon, Header} from '../components';
 import theme from '../styles/theme';
 
@@ -10,6 +10,9 @@ const Routers = () => {
     <Router>
       <Stack key="root" hideNavBar>
         <Scene key="SplashScreen" component={SplashScreen} />
+        <Scene key="Auth" hideNavBar>
+          <Scene key="Login" component={Login} />
+        </Scene>
         <Scene
           key="main"
           tabs={true}

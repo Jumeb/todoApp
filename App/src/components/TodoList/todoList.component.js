@@ -13,8 +13,8 @@ import {Actions} from 'react-native-router-flux';
 const TodoList = (props) => {
   const {task, openModal, setFunc, setEditTask, openNotification} = props;
 
-  const upDate = (id, todo, date, created_on, completed) => {
-    const editTask = {id, todo, date, created_on, completed};
+  const upDate = (id, title, date, created_on, completed) => {
+    const editTask = {id, title, date, created_on, completed};
     setEditTask(editTask);
     setFunc('editTodo');
     openModal();
@@ -27,8 +27,8 @@ const TodoList = (props) => {
     Actions.Done();
   };
 
-  const deleteTask = (id, todo) => {
-    const deleteTodo = {id, todo};
+  const deleteTask = (id, title) => {
+    const deleteTodo = {id, title};
     setEditTask(deleteTodo);
     openNotification();
   };
@@ -41,13 +41,13 @@ const TodoList = (props) => {
           {moment(task.date).format('hh:mm a')}
         </Text>
       </View>
-      <Text style={styles.todoInfo}>{task.todo}</Text>
+      <Text style={styles.todoInfo}>{task.title}</Text>
       <View style={styles.functionButtonsContainer}>
         <TouchableOpacity
           onPress={() =>
             upDate(
               task.id,
-              task.todo,
+              task.title,
               task.date,
               task.created_on,
               task.completed,
@@ -70,7 +70,7 @@ const TodoList = (props) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.functionButton, {backgroundColor: theme.DANGER_COLOR}]}
-          onPress={() => deleteTask(task.id, task.todo)}>
+          onPress={() => deleteTask(task.id, task.title)}>
           <Icons name="ios-trash-outline" size={20} color={theme.WHITE_COLOR} />
         </TouchableOpacity>
       </View>

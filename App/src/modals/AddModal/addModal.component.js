@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, Platform} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -12,7 +12,7 @@ import styles from './addModal.style';
 
 const AddModal = (props) => {
   const {addModal, closeModal, editTask, func} = props;
-  const [todo, setTodo] = useState('');
+  const [title, setTodo] = useState('');
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date());
   const [createdOn, setCreatedOn] = useState(new Date());
@@ -28,8 +28,8 @@ const AddModal = (props) => {
   };
 
   useEffect(() => {
-    if (editTask.todo) {
-      setTodo(editTask.todo);
+    if (editTask.title) {
+      setTodo(editTask.title);
     }
   }, [editTask]);
 
@@ -40,11 +40,11 @@ const AddModal = (props) => {
 
   const perform = () => {
     if (func === 'addTodo') {
-      if (todo) {
+      if (title) {
         const id = Math.floor(Math.random() * 1000);
         const completed = false;
         const created_on = createdOn;
-        const addTodo = {id, todo, date, created_on, completed};
+        const addTodo = {id, title, date, created_on, completed};
         props.AddTodo(addTodo);
         closeModal();
         setCreatedOn(new Date());
@@ -54,7 +54,7 @@ const AddModal = (props) => {
     } else if (func === 'editTodo') {
       const created_on = new Date();
       const {completed, id} = editTask;
-      const editTodo = {id, todo, date, created_on, completed};
+      const editTodo = {id, title, date, created_on, completed};
       props.EditTodo(editTodo);
       closeModal();
       setTodo('');
@@ -75,7 +75,7 @@ const AddModal = (props) => {
       <View style={styles.modalContent}>
         <Input
           capitalze="sentences"
-          value={todo}
+          value={title}
           setTodo={(text) => setTodo(text)}
         />
         {show && (
@@ -100,11 +100,7 @@ const AddModal = (props) => {
             style={styles.functionButton}
             onPress={() => perform()}>
             <Text style={styles.functionButtonText}>
-              {todo.length < 10
-                ? 'Enter Todo'
-                : func === 'addTodo'
-                ? 'Add Todo'
-                : 'Edit Todo'}
+              {func === 'addTodo' ? 'Add Todo' : 'Edit Todo'}
             </Text>
           </TouchableOpacity>
         </View>
